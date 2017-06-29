@@ -12,7 +12,7 @@ using namespace std;
 
 int main() {
 
-    int n, i, j, k, m;
+    int n, dividend, divisor, even, index;
     
     cin>>n;
     
@@ -21,26 +21,28 @@ int main() {
     prime[1] = 0;
     prime[2] = 2;
     
-    for(i = 3 ; i <= n ; i = i + 2 ){
+    for(dividend = 3 ; dividend <= n ; dividend = dividend + 2 ){
         
-        for( j = 2 ; j < i ; j++ )
+        for( divisor = 2 ; divisor < dividend ; divisor++ )
             
-            if(i % j == 0){
-                prime[i] = 0;
+            if(dividend % divisor == 0){
+                
+                prime[dividend] = 0;
+                
                 break;
             }
         
-            else prime[i] = i;
+            else prime[dividend] = dividend;
     }
     
-    for( m = 4 ; m <= n ; m = m + 2){
+    for( even = 4 ; even <= n ; even = even + 2){
         
-        prime[m] = 0;
+        prime[even] = 0;
     }
     
-    for ( k = 1 ; k <= n ; k++){
+    for ( index = 1 ; index <= n ; index++){
         
-        cout << prime[k] << " ";
+        cout << prime[index] << " ";
         
     }
     
