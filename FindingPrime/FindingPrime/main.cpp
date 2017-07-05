@@ -12,38 +12,44 @@ using namespace std;
 
 int main() {
 
-    int n, dividend, divisor, even, index;
+    int n, dividend, divisor, i, index = 3;
     
     cin>>n;
     
     int prime[n+1];
     
-    prime[1] = 0;
     prime[2] = 2;
     
-    for(dividend = 3 ; dividend <= n ; dividend = dividend + 2 ){
+    for(dividend = 3 ; dividend <= n ; dividend = dividend + 2){
         
-        for( divisor = 2 ; divisor < dividend ; divisor++ )
+        for( divisor = 2 ; divisor < dividend ; divisor++ ){
             
-            if(dividend % divisor == 0){
+            
+            if (divisor == dividend - 1){
                 
-                prime[dividend] = 0;
+                prime[index] = dividend;
+                index++;
+            }
+            
+            else if(dividend % divisor == 0)
                 
                 break;
-            }
+            
+            else if(dividend % divisor != 0)
+                
+                continue;
+                
+        }
         
-            else prime[dividend] = dividend;
+        
+        
     }
+
     
-    for( even = 4 ; even <= n ; even = even + 2){
+    for ( i = 2 ; i < index ; i++){
         
-        prime[even] = 0;
-    }
+        cout << prime[i] << " ";
     
-    for ( index = 1 ; index <= n ; index++){
-        
-        cout << prime[index] << " ";
-        
     }
     
     cout << endl;
