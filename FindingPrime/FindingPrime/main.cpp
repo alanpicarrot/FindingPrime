@@ -9,50 +9,63 @@
 #include <iostream>
 using namespace std;
 
+bool FindingPrime (int n)
 
-int main() {
-
-    int n, dividend, divisor, i, index = 3;
+{
+    bool prime[n+1];
     
-    cin>>n;
+    int i, j;
     
-    int prime[n+1];
+    prime[0] = false;
     
-    prime[2] = 2;
+    prime[1] = false;
     
-    for(dividend = 3 ; dividend <= n ; dividend = dividend + 2){
-        
-        for( divisor = 2 ; divisor < dividend ; divisor++ ){
-            
-            
-            if (divisor == dividend - 1){
+    prime[2] = true;
+    
+    for( i = 2 ; i <= n ; i++)
+    {
+        if ( prime[i] == true)
+        {
+            for ( j = 1 ; j <= n ; j = j * i )
+            {
                 
-                prime[index] = dividend;
-                index++;
+                prime[j] = false;
+                
             }
-            
-            else if(dividend % divisor == 0)
-                
-                break;
-            
-            else if(dividend % divisor != 0)
-                
-                continue;
-                
         }
         
-        
+        if(prime[i] == false)
+            
+            continue;
         
     }
+    
+    return prime[n+1];
+    
+}
 
+
+int main()
+{
+    int n, k ;
     
-    for ( i = 2 ; i < index ; i++){
+    cin >> n;
+    
+    bool prime[n+1];
+    
+    prime[n+1] = FindingPrime(n);
+    
+    for ( k = 1 ; k <= n ; k++ )
+    {
+        if ( prime[k] == true )
+            
+            cout << k << "" ;
         
-        cout << prime[i] << " ";
-    
+        else continue;
+        
     }
     
-    cout << endl;
+    cout << endl ;
     
     return 0;
     
