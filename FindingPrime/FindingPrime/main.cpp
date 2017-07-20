@@ -1,54 +1,56 @@
-//
-//  main.cpp
-//  FindingPrime
-//
-//  Created by Yu-hsiang Chang on 2017/6/23.
-//  Copyright © 2017年 Yu-hsiang Chang. All rights reserved.
-//
-
 #include <iostream>
 using namespace std;
 
-int main()
+void FindingPrime (int n, bool prime[])
+
 {
-    int n, m, i, j, k;
     
-    cin >> n;
-    
-    bool prime[n+1];
-    
-    for( i = 0 ; i <= n ; i++)
-        
-        prime[i] = true;
+    int i, j, k, m ;
     
     prime[0] = false;
     
     prime[1] = false;
     
-    for(j = 2 ; j <= n ; j++)
+    for ( k = 2 ; k <= n ; k++ )
+        
+        prime[k] = true;
+    
+    for ( i = 2 ; i <= n ; i++ )
     {
         
-        if ( prime[j] == true)
-        {
-            for ( k = j + j ;  k <= n ; k += j )
-                
-                prime[k] = false;
+        if ( prime[i] == true)
             
+        {
+            for ( j = i + i ; j <= n ; j += i )
+            {
+                
+                prime[j] = false;
+                
+            }
         }
         
     }
     
-    for ( m = 1 ; m <= n ; m++ )
-    {
-        if ( prime[m] == true )
+    for ( m = 2 ; m <= n ; m++ )
+        
+        if( prime[m] == true )
             
-            cout << m << " " ;
-        
-        else continue;
-        
-    }
+            cout << m << " ";
     
-    cout << endl ;
+}
+
+
+int main()
+{
+    int n ;
+    
+    cin >> n;
+    
+    bool prime[n+1];
+    
+    FindingPrime(n, prime);
+    
+    cout << endl;
     
     return 0;
     
