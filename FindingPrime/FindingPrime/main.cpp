@@ -1,11 +1,13 @@
 #include <iostream>
 using namespace std;
 
-void FindingPrime (int n, bool prime[])
+bool * FindingPrime (int n, bool prime[])
 
 {
     
-    int i, j, k, m ;
+    int i, j, k;
+    
+    bool *p ;
     
     prime[0] = false;
     
@@ -31,24 +33,30 @@ void FindingPrime (int n, bool prime[])
         
     }
     
-    for ( m = 2 ; m <= n ; m++ )
-        
-        if( prime[m] == true )
-            
-            cout << m << " ";
+    p = prime;
+    
+    return p ;
     
 }
 
 
 int main()
 {
-    int n ;
+    int n, m ;
+    
+    bool *p ;
     
     cin >> n;
     
     bool prime[n+1];
     
-    FindingPrime(n, prime);
+    p = FindingPrime(n, prime);
+    
+    for ( m = 2 ; m <= n ; m++ )
+        
+        if( prime[m] == true )
+            
+            cout << m << " ";
     
     cout << endl;
     
