@@ -43,10 +43,8 @@ void printArray(bool* prime, int size)
     
     for(m = 1; m <= size ; m++)
     {
-        
         if(prime[m] == true)
         cout << m << " " ;
-        
     }
     
     cout << endl ;
@@ -64,6 +62,8 @@ int main()
     prime = FindingPrime(size);
     
     printArray(prime, size);
+    
+    delete [] prime;
     
     return 0;
     
