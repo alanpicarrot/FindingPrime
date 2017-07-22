@@ -1,29 +1,29 @@
 #include <iostream>
 using namespace std;
 
-bool * FindingPrime (int n, bool prime[])
+bool * FindingPrime (int size)
 
 {
     
     int i, j, k;
     
-    bool *p ;
+    bool* prime = new bool [size]; // 為一個布林陣列配置一個大小為size的記憶體空間。
     
     prime[0] = false;
     
     prime[1] = false;
     
-    for ( k = 2 ; k <= n ; k++ )
+    for ( k = 2 ; k <= size ; k++ )
         
         prime[k] = true;
     
-    for ( i = 2 ; i <= n ; i++ )
+    for ( i = 2 ; i <= size ; i++ )
     {
         
         if ( prime[i] == true)
             
         {
-            for ( j = i + i ; j <= n ; j += i )
+            for ( j = i + i ; j <= size ; j += i ) // 注意這裡的迴圈設計。
             {
                 
                 prime[j] = false;
@@ -33,32 +33,37 @@ bool * FindingPrime (int n, bool prime[])
         
     }
     
-    p = prime;
-    
-    return p ;
+    return prime ;
     
 }
 
+void printArray(bool* prime, int size)
+{
+    int m;
+    
+    for(m = 1; m <= size ; m++)
+    {
+        
+        if(prime[m] == true)
+        cout << m << " " ;
+        
+    }
+    
+    cout << endl ;
+    
+}
 
 int main()
 {
-    int n, m ;
+    int size ;
     
-    bool *p ;
+    bool* prime;
     
-    cin >> n;
+    cin >> size;
     
-    bool prime[n+1];
+    prime = FindingPrime(size);
     
-    p = FindingPrime(n, prime);
-    
-    for ( m = 2 ; m <= n ; m++ )
-        
-        if( prime[m] == true )
-            
-            cout << m << " ";
-    
-    cout << endl;
+    printArray(prime, size);
     
     return 0;
     
